@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.projetodevcorp.movielist.model.Midia;
 import com.projetodevcorp.movielist.repository.MidiaRepository;
 
@@ -39,7 +40,7 @@ public class MidiaController {
 
 		// Retorna a lista de filmes e séries pelo o ID
 	@GetMapping("/midia/{id}")
-	public Optional<Midia> buscarFilmePorId(@PathVariable Number id) {
+	public Optional<Midia> buscarFilmePorId(@PathVariable int id) {
 		return midiaRepository.findById(id);  
 	}
 	
@@ -52,21 +53,29 @@ public class MidiaController {
 	
 		// Atualizar
 	@PutMapping("/midia/{id}")
-	public ResponseEntity<Midia> atualizarFilmePorId(@PathVariable Number id, @RequestBody Midia midia) {
-		Optional<Midia> atualizarMidia = midiaRepository.findById(id);
+	public ResponseEntity<Midia> atualizarFilmePorId(@PathVariable int id, @RequestBody Midia midia) {
+		Midia antigoMidia = midiaRepository.getById(id);
 		
-		if(atualizarMidia.isPresent()) {
-			
-			Midia midiaAtualizada = midiaRepository.save(midia);
-			return ResponseEntity.ok(midiaAtualizada);
-	}else{
+		if(antigoMidia != null) {
+			antigoMidia.setId(midia.getId());
+			antigoMidia.setAno(midia.getAno());
+			antigoMidia.setAnotacao(midia.getAnotacao());
+			antigoMidia.setAssistido(midia.getAssistido());
+			antigoMidia.setDuracao(midia.getDuracao());
+			antigoMidia.setGenero(midia.getGenero());
+			antigoMidia.setNome(midia.getNome());
+			antigoMidia.setPoster(midia.getPoster());
+			antigoMidia.setTipo(midia.getTipo());
+			midiaRepository.save(antigoMidia);
+			return ResponseEntity.ok(antigoMidia);
+		}else{
 			return ResponseEntity.notFound().build();
+		}
 	}
- }
 	
 		// Deletar
 	@DeleteMapping("/midia/{id}")
-	public ResponseEntity<Midia> deletarFilmePorId(@PathVariable Number id) {
+	public ResponseEntity<Midia> deletarFilmePorId(@PathVariable int id) {
 		Optional<Midia> deleteMidia = midiaRepository.findById(id);
 		
 		if(deleteMidia.isPresent()) {

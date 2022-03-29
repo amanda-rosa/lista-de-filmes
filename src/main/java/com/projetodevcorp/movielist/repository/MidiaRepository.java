@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.projetodevcorp.movielist.model.Midia;
 
 @Repository
-public interface MidiaRepository extends JpaRepository<Midia, Number> {
+public interface MidiaRepository extends JpaRepository<Midia, Integer> {
 
 	List<Midia> findByNomeContains(String nome);
 	

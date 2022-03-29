@@ -15,25 +15,24 @@ public class Midia {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
-	private Number id;
+	private int id;
 	private String nome;
 	private String anotacao;
 	private String ano;
 	private String tipo;
 	private String genero;
-	private Number duracao;
+	private int duracao;
 	private String poster;
-	private Number assistido;
+	private int assistido;
 	
 	@JsonIgnore
-	
-	
+		
 	public Midia() {
 		
 	}
 	
-	public Midia(String nome, String anotacao, String ano, String tipo, String genero, Number duracao,
-			String poster, Number assistido) {
+	public Midia(String nome, String anotacao, String ano, String tipo, String genero, int duracao,
+			String poster, int assistido) {
 		this.nome = nome;
 		this.anotacao = anotacao;
 		this.ano = ano;
@@ -44,11 +43,11 @@ public class Midia {
 		this.assistido = assistido;
 	}
 
-	public Number getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Number id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -92,11 +91,11 @@ public class Midia {
 		this.genero = genero;
 	}
 
-	public Number getDuracao() {
+	public int getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(Number duracao) {
+	public void setDuracao(int duracao) {
 		this.duracao = duracao;
 	}
 
@@ -108,11 +107,11 @@ public class Midia {
 		this.poster = poster;
 	}
 
-	public Number getAssistido() {
+	public int getAssistido() {
 		return assistido;
 	}
 
-	public void setAssistido(Number assistido) {
+	public void setAssistido(int assistido) {
 		this.assistido = assistido;
 	}
 }
