@@ -23,7 +23,7 @@ public class Midia {
 	private String genero;
 	private int duracao;
 	private String poster;
-	private int assistido;
+	private String assistido;
 	
 	@JsonIgnore
 		
@@ -32,7 +32,7 @@ public class Midia {
 	}
 	
 	public Midia(String nome, String anotacao, String ano, String tipo, String genero, int duracao,
-			String poster, int assistido) {
+			String poster, String assistido) {
 		this.nome = nome;
 		this.anotacao = anotacao;
 		this.ano = ano;
@@ -107,11 +107,11 @@ public class Midia {
 		this.poster = poster;
 	}
 
-	public int getAssistido() {
+	public String getAssistido() {
 		return assistido;
 	}
 
-	public void setAssistido(int assistido) {
+	public void setAssistido(String assistido) {
 		this.assistido = assistido;
 	}
 }
